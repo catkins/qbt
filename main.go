@@ -1,5 +1,7 @@
 package main
 
-func main() {
+import "github.com/catkins/qbt/cmd"
 
+func main() {
+	cmd.Execute()
 }
