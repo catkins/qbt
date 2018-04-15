@@ -1,8 +1,6 @@
 package lua
 
 import (
-	"fmt"
-
 	"github.com/catkins/qbt/pkg/bt"
 	"github.com/pkg/errors"
 	lua "github.com/yuin/gopher-lua"
@@ -38,8 +36,6 @@ func (env *Environment) RowPredicate(source string) func(row bt.Row) (bool, erro
 
 		// result comes as the return value from the script on the top of the stack
 		result := env.state.Get(-1)
-
-		fmt.Printf("result: %v\n", result)
 
 		// only "true" if it's expicit lua true value
 		return result == lua.LTrue, nil
