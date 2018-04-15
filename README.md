@@ -14,24 +14,26 @@ The other option for ad-hoc queries into BigTable is to write custom scripts in 
 #### Requirements
 
 - Go 1.9+
+- gcloud CLI
 
 ```
 go get -u github.com/catkins/qbt
+gcloud auth applicatiom-default login
 ```
 
 ### Usage
 
 ```
-qbt [--project=<project id>] [--instance=<instance id>] <table> <query>
+qbt [--project=<project id>] [--instance=<instance id>] query <table> <query>
 ```
 
 ### Example
 
 ```sh
-qbt query --project=my-project --instance=my-bt-instance my_table 'if row.my_cf["my_cf:haystack"] == "needle" then return true end'
+qbt query my_table 'return row.my_cf["my_cf:haystack"] == "needle"'
 
 # json decoding also included
-qbt query --project=my-project --instance=my-bt-instance my_table '
+qbt query my_table '
   json = require("json")
   decoded_value = json.decode(row.my_cf["my_cf:haystack"])
   return decoded_value["nested_field"] == 123
@@ -40,7 +42,7 @@ qbt query --project=my-project --instance=my-bt-instance my_table '
 
 ### Configuration
 
-Configuration can also be provided from the environment by providing the `QBT_PROJECT` and `QBT_INSTANCE` environment variables.
+Configuration can also be provided from the environment by providing the `QBT_PROJECT` and `QBT_INSTANCE` environment variables, or via CLI flags.
 
 ### Libraries used
 
