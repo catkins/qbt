@@ -6,6 +6,7 @@ import (
 	"fmt"
 
 	"github.com/catkins/qbt/pkg/bt"
+	"github.com/catkins/qbt/pkg/lua"
 	"github.com/spf13/cobra"
 )
 
@@ -17,15 +18,15 @@ func queryBigtable(cmd *cobra.Command, args []string) {
 		fmt.Printf("error: %v\n", err)
 		return
 	}
+	luaenv := lua.NewEnvironment()
 
 	table := args[0]
+	luaQuery := args[1]
 
 	query := bt.Query{
-		Table: table,
-		Range: bt.AllRows{},
-		Predicate: func(row bt.Row) (bool, error) {
-			return true, nil
-		},
+		Table:     table,
+		Range:     bt.AllRows{},
+		Predicate: luaenv.RowPredicate(luaQuery),
 	}
 
 	err = client.ReadRowsFiltered(ctx, query, func(row bt.Row) {
