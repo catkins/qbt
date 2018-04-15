@@ -6,6 +6,7 @@ import (
 	"github.com/catkins/qbt/pkg/bt"
 	"github.com/pkg/errors"
 	lua "github.com/yuin/gopher-lua"
+	luajson "layeh.com/gopher-json"
 )
 
 // Environment wraps a gopher-lua environment and provides methods for running lua commands against BigTable output
@@ -18,6 +19,7 @@ func NewEnvironment() *Environment {
 	env := Environment{
 		state: lua.NewState(),
 	}
+	luajson.Preload(env.state)
 
 	return &env
 }
@@ -61,15 +63,4 @@ func (env *Environment) ConvertRowToTable(row bt.Row) *lua.LTable {
 	// set key last to ensure it doesn't get overwritten
 	table.RawSetString("key", lua.LString(row.Key))
 	return table
-}
-
-func (env *Environment) Eval(source string) error {
-	err := env.state.DoString(source)
-	if err != nil {
-		return errors.Wrap(err, "error executing lua code")
-	}
-
-	result := env.state.Get(-1)
-	fmt.Printf("result: %v\n", result)
-	return nil
 }

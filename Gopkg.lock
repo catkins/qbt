@@ -301,9 +301,15 @@
   revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
   version = "v2.2.1"
 
+[[projects]]
+  branch = "master"
+  name = "layeh.com/gopher-json"
+  packages = ["."]
+  revision = "1f632b9a4f86b51489c7aa028bc05512f6807785"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8166e925359717f478077d5826624bba8086c07b35a9263775a988a3c6b7cb8e"
+  inputs-digest = "62cf9a2b453c665e05fc25a644aa841c4c1ede909941ecf1bb5ee6a0f8c0406a"
   solver-name = "gps-cdcl"
   solver-version = 1
