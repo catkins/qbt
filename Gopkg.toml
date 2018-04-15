@@ -32,3 +32,11 @@
 [[constraint]]
   name = "github.com/spf13/cobra"
   version = "0.0.2"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/yuin/gopher-lua"
+
+[[constraint]]
+  name = "github.com/pkg/errors"
+  version = "0.8.0"

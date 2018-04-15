@@ -8,6 +8,12 @@
   version = "v1.0"
 
 [[projects]]
+  name = "github.com/pkg/errors"
+  packages = ["."]
+  revision = "645ef00459ed84a119197bfb8d8205042c6df63d"
+  version = "v0.8.0"
+
+[[projects]]
   name = "github.com/spf13/cobra"
   packages = ["."]
   revision = "a1f051bc3eba734da4772d60e2d677f47cf93ef4"
@@ -19,9 +25,20 @@
   revision = "583c0c0531f06d5278b7d917446061adc344b5cd"
   version = "v1.0.1"
 
+[[projects]]
+  branch = "master"
+  name = "github.com/yuin/gopher-lua"
+  packages = [
+    ".",
+    "ast",
+    "parse",
+    "pm"
+  ]
+  revision = "84ea3a3c79b3c4b3b39606cc96f255cd63635ce0"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "cf6ae3f7201cb22f69bfa2bc9ce6c23babbb9196b4127b1169ff393893e417e8"
+  inputs-digest = "c3fc36aefd884423d3144f5557b021f3654b8576d9765d9526240ef0222f3f59"
   solver-name = "gps-cdcl"
   solver-version = 1
