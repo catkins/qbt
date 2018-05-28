@@ -37,3 +37,7 @@ type Range struct {
 	Begin string
 	End   string
 }
+
+func (rs Range) toRowSet() bigtable.RowSet {
+	return bigtable.NewRange(rs.Begin, rs.End)
+}
