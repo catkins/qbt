@@ -45,7 +45,3 @@ See https://github.com/catkins/qbt for more information and documentation.`,
 
 	return &rootCmd
 }
-
-func initConfig(cmd *cobra.Command, args []string) {
-	fmt.Println("not yet implemented")
-}
