@@ -13,7 +13,16 @@ import (
 func queryBigtable(cmd *cobra.Command, args []string) {
 	ctx := context.Background()
 	config := loadConfig()
-	client, err := bt.NewClient(ctx, config.Project, config.Instance)
+
+	var client *bt.Client
+	var err error
+
+	if config.Emulator != "" {
+		client, err = bt.NewClient(ctx, "proj", "instance", bt.WithEmulator(config.Emulator))
+	} else {
+		client, err = bt.NewClient(ctx, config.Project, config.Instance)
+	}
+
 	if err != nil {
 		fmt.Printf("error: %v\n", err)
 		return

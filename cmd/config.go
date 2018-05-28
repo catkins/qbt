@@ -10,6 +10,10 @@ type Config struct {
 	Project string
 	// Instance is the BigTable instance to connect to
 	Instance string
+
+	// Emulator is the address of a BigTable emulator
+	// instance and project are ignored when an emulator is provided
+	Emulator string
 }
 
 func loadConfig() Config {

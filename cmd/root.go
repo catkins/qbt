@@ -29,6 +29,8 @@ See https://github.com/catkins/qbt for more information and documentation.`,
 	viper.BindPFlag("instance", rootCmd.PersistentFlags().Lookup("instance"))
 	rootCmd.PersistentFlags().StringP("project", "p", "", "GCP project to connect to")
 	viper.BindPFlag("project", rootCmd.PersistentFlags().Lookup("project"))
+	rootCmd.PersistentFlags().StringP("emulator", "E", "", "Address to connect to BigTable emulator (ignores instance/project)")
+	viper.BindPFlag("emulator", rootCmd.PersistentFlags().Lookup("emulator"))
 
 	rootCmd.AddCommand(&cobra.Command{
 		Use:   "query [table] [query]",
