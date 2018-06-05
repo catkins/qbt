@@ -32,12 +32,15 @@ See https://github.com/catkins/qbt for more information and documentation.`,
 	rootCmd.PersistentFlags().StringP("emulator", "E", "", "Address to connect to BigTable emulator (ignores instance/project)")
 	viper.BindPFlag("emulator", rootCmd.PersistentFlags().Lookup("emulator"))
 
-	rootCmd.AddCommand(&cobra.Command{
+	queryCmd := cobra.Command{
 		Use:   "query [table] [query]",
 		Short: "query data from Google Cloud Bigtable",
 		Run:   queryBigtable,
 		Args:  cobra.ExactArgs(2),
-	})
+	}
+	queryCmd.PersistentFlags().StringP("prefix", "P", "", "row key prefix")
+	viper.BindPFlag("prefix", queryCmd.PersistentFlags().Lookup("prefix"))
+	rootCmd.AddCommand(&queryCmd)
 
 	rootCmd.AddCommand(&cobra.Command{
 		Use:   "init",
