@@ -14,6 +14,9 @@ type Config struct {
 	// Emulator is the address of a BigTable emulator
 	// instance and project are ignored when an emulator is provided
 	Emulator string
+
+	// Prefix is the row key prefix to predicate upon table scan
+	Prefix string
 }
 
 func loadConfig() Config {
