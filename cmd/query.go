@@ -15,6 +15,7 @@ func queryBigtable(cmd *cobra.Command, args []string) {
 	config := loadConfig()
 
 	var client *bt.Client
+	var rowRange bt.RowSet
 	var err error
 
 	if config.Emulator != "" {
@@ -27,6 +28,13 @@ func queryBigtable(cmd *cobra.Command, args []string) {
 		fmt.Printf("error: %v\n", err)
 		return
 	}
+
+	if config.Prefix != "" {
+		rowRange = bt.PrefixRange{Prefix: config.Prefix}
+	} else {
+		rowRange = bt.AllRows{}
+	}
+
 	luaenv := lua.NewEnvironment()
 
 	table := args[0]
@@ -34,7 +42,7 @@ func queryBigtable(cmd *cobra.Command, args []string) {
 
 	query := bt.Query{
 		Table:     table,
-		Range:     bt.AllRows{},
+		Range:     rowRange,
 		Predicate: luaenv.RowPredicate(luaQuery),
 	}
 

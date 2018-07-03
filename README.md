@@ -24,7 +24,7 @@ gcloud auth applicatiom-default login
 ### Usage
 
 ```
-qbt [--project=<project id>] [--instance=<instance id>] query <table> <query>
+qbt [--project=<project id>] [--instance=<instance id>] [--prefix=<row key prefix>] query <table> <query>
 ```
 
 ### Example
@@ -42,7 +42,7 @@ qbt query my_table '
 
 ### Configuration
 
-Configuration can also be provided from the environment by providing the `QBT_PROJECT` and `QBT_INSTANCE` environment variables, or via CLI flags.
+Configuration can also be provided from the environment by providing the `QBT_PROJECT`, `QBT_INSTANCE`, and `QBT_PREFIX` environment variables, or via CLI flags.
 
 ### Libraries used
 
@@ -61,7 +61,7 @@ Configuration can also be provided from the environment by providing the `QBT_PR
 - [ ] Add debug logging
 - [ ] Queries from file / STDIN
 - [ ] Pre-query scripts (eg. to define functions)
-- [ ] Add CLI params for specifying range / prefix queries
+- [x] Add CLI params for specifying range / prefix queries
 - [ ] Web server for submitting queries to
 - [ ] Other authentication methods
 
